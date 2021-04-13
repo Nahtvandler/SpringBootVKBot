@@ -24,15 +24,13 @@ public class VKCore {
 
         TransportClient transportClient = HttpTransportClient.getInstance();
         vk = new VkApiClient(transportClient);
-
+        vk.setVersion("5.130");
         // Загрузка конфигураций
         int groupId;
         String access_token;
 
         groupId = Integer.valueOf(System.getenv("VK_BOT_GROUP_ID"));
         access_token = System.getenv("VK_BOT_ACCESS_TOKEN");
-//        groupId = 203954589;
-//        access_token = "e8c8f950aafeccce62a9e8d4e3ccdb09aeda5ac3d77ff29ada995a1ec70c195b24fb4e89bdd478e04cf84";
         actor = new GroupActor(groupId, access_token);
 
 //            ts = vk.messages().getLongPollServer(actor).execute().getTs();

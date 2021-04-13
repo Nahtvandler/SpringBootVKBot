@@ -11,6 +11,7 @@ import org.apache.logging.log4j.Logger;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class VKManager {
     private final static Logger logger = LogManager.getLogger(VKManager.class);
@@ -45,9 +46,13 @@ public class VKManager {
     }
 
     public void resendWallPost(Wallpost wallpost) throws ClientException, ApiException {
-        String attachment = MessageFormat.format("wall{0}_{1}", wallpost.getId(), wallpost.getOwnerId());
+        String attachment = MessageFormat.format("wall{0}_{1}", wallpost.getOwnerId().toString(), wallpost.getId().toString());
+
+
 
         vkCore.getVk().messages().send(vkCore.getActor())
-                .peerIds(getGroupMembers()).randomId(0).attachment(attachment).message("Глянь пост").execute();
+                .peerId(getGroupMembers().get(0)).randomId(new Random().nextInt())
+                .attachment(attachment).message("пост"+System.currentTimeMillis()).execute();
     }
+
 }
