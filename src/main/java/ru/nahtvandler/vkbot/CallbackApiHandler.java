@@ -17,4 +17,9 @@ public class CallbackApiHandler extends CallbackApi {
     public void messageNew(Integer groupId, Message message) {
         super.messageNew(groupId, message);
     }
+
+    @Override
+    public void confirmation(Integer groupId, String secret) {
+        super.confirmation(groupId, secret);
+    }
 }
