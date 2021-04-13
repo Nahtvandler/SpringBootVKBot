@@ -31,12 +31,17 @@ public class HomeController {
 
         String type = jsonObject.get("type").getAsString();
         if (type.equalsIgnoreCase("confirmation")) {
-            return "b8bfb568";
+            return "9f1bfa3a";
         }
 
         CallbackApiHandler handler = new CallbackApiHandler();
         handler.parse(jsonObject);
 
+        return HttpStatus.OK.toString();
+    }
+
+    @RequestMapping("/check")
+    public String check() {
         return HttpStatus.OK.toString();
     }
 }
