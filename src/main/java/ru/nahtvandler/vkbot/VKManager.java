@@ -1,5 +1,6 @@
 package ru.nahtvandler.vkbot;
 
+import com.google.gson.JsonSyntaxException;
 import com.vk.api.sdk.client.actors.GroupActor;
 import com.vk.api.sdk.exceptions.ApiException;
 import com.vk.api.sdk.exceptions.ClientException;
@@ -48,11 +49,17 @@ public class VKManager {
     public void resendWallPost(Wallpost wallpost) throws ClientException, ApiException {
         String attachment = MessageFormat.format("wall{0}_{1}", wallpost.getOwnerId().toString(), wallpost.getId().toString());
 
-
-
         vkCore.getVk().messages().send(vkCore.getActor())
                 .peerId(getGroupMembers().get(0)).randomId(new Random().nextInt())
-                .attachment(attachment).message("пост"+System.currentTimeMillis()).execute();
+                .attachment(attachment).message("пост" + System.currentTimeMillis()).execute();
+
+//        try {
+//            vkCore.getVk().messages().send(vkCore.getActor())
+//                    .peerIds(getGroupMembers()).randomId(new Random().nextInt())
+//                    .attachment(attachment).message("пост" + System.currentTimeMillis()).execute();
+//        } catch (ClientException e) {
+//            //do nothing
+//        }
     }
 
 }

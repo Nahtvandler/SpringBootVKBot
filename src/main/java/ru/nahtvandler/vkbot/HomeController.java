@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class HomeController {
     private final static Logger logger = LogManager.getLogger(HomeController.class);
 
+    CallbackApiHandler handler = new CallbackApiHandler();
     Gson gson = new Gson();
 
     @GetMapping("/")
@@ -29,15 +30,18 @@ public class HomeController {
 
         JsonObject jsonObject = (JsonObject) gson.fromJson(request, JsonObject.class);
 
+//        if (jsonObject.get("secret").getAsString().equals("")) {
+//            return "ok";
+//        }
+
         String type = jsonObject.get("type").getAsString();
         if (type.equalsIgnoreCase("confirmation")) {
             return "9f1bfa3a";
         }
 
-        CallbackApiHandler handler = new CallbackApiHandler();
         handler.parse(jsonObject);
 
-        return HttpStatus.OK.toString();
+        return "ok";
     }
 
     @RequestMapping("/check")
