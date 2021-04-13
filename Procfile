@@ -1,1 +1,1 @@
-web: java -jar target/vkbot-1.0-SNAPSHOT.jar
+web: java -Dserver.port=$PORT $JAVA_OPTS -jar target/vkbot-1.0-SNAPSHOT.jar
