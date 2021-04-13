@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp target/classes:target/dependency/* ru.nahtvandler.vkbot.Application
+web: web: java -jar target/vkbot-1.0-SNAPSHOT.jar
