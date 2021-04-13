@@ -45,7 +45,7 @@ public class VKManager {
     }
 
     public void resendWallPost(Wallpost wallpost) throws ClientException, ApiException {
-        String attachment = MessageFormat.format("wall{o}_{1}", wallpost.getId(), wallpost.getOwnerId());
+        String attachment = MessageFormat.format("wall{0}_{1}", wallpost.getId(), wallpost.getOwnerId());
 
         vkCore.getVk().messages().send(vkCore.getActor())
                 .peerIds(getGroupMembers()).randomId(0).attachment(attachment).message("Глянь пост").execute();
