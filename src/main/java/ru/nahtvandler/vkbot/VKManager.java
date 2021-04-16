@@ -53,9 +53,18 @@ public class VKManager {
     public void resendWallPost(Wallpost wallpost) throws ClientException, ApiException {
         String attachment = MessageFormat.format("wall{0}_{1}", wallpost.getOwnerId().toString(), wallpost.getId().toString());
 
-        vkCore.getVk().messages().send(vkCore.getActor())
-                .peerId(getGroupMembers().get(0)).randomId(new Random().nextInt())
-                .attachment(attachment).message("пост" + System.currentTimeMillis()).keyboard(createKeyborad(wallpost)).execute();
+//        vkCore.getVk().messages().send(vkCore.getActor())
+//                .peerIds(getGroupMembers().get(0)).randomId(new Random().nextInt())
+//                .attachment(attachment).message("пост" + System.currentTimeMillis()).keyboard(createKeyborad(wallpost)).execute();
+
+        try {
+            vkCore.getVk().messages().send(vkCore.getActor())
+                    .peerIds(getGroupMembers()).randomId(new Random().nextInt())
+                    .attachment(attachment).message("пост" + System.currentTimeMillis()).keyboard(createKeyborad(wallpost)).execute();
+
+        } catch (ClientException e) {
+            //do nothing
+        }
 
 //        try {
 //            vkCore.getVk().messages().send(vkCore.getActor())
